@@ -5,7 +5,7 @@
         </md-card-media>
         <md-card-header>
             <div class="md-title">{{product.name}}</div>
-            <div class="md-subhead">{{product.manufacturer.name}}</div>
+            <div v-if="product.manufacturer" class="md-subhead">{{product.manufacturer.name}}</div>            
         </md-card-header>
         <md-card-content>
             ${{product.price}}

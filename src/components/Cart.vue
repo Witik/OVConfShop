@@ -8,6 +8,8 @@
                 <product-details :product="product"></product-details>
             </li>
         </ul>
+        <!-- show the create order button if there is at least 1 product in the cart-->        
+        <md-button class="md-primary" @click="createNewOrder"><i class="fa fa-credit-card"></i> Create new order</md-button>        
     </div>
     <div v-else class="title"><h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1></div>
 </template>
@@ -16,13 +18,23 @@
     import ProductDetails from '../components/product/ProductDetails'
 
     export default {
-        data() {
-            return {
-                cart: this.$store.state.cart
+        computed: {
+            
+        cart() {
+            return this.$store.state.cart
             }
+            
+            
         },
+        methods: {
+            createNewOrder () {
+                this.$store.dispatch('addOrder', this.cart)                
+            },
+        },        
         components: {
             productDetails: ProductDetails
         }
     }
+
+    
 </script>

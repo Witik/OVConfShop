@@ -1,6 +1,6 @@
 import {firestoreAction} from "vuexfire";
 import {db} from "@/firebase/firestore";
-import {PRODUCT_ADD_SUCCESS, PRODUCT_REMOVE_SUCCESS, PRODUCT_UPDATE_SUCCESS} from "@/store/mutation-types";
+import {PRODUCT_ADD_SUCCESS, PRODUCT_REMOVE_SUCCESS, PRODUCT_UPDATE_SUCCESS, CREATE_ORDER_SUCCESS} from "@/store/mutation-types";
 
 export const productActions = {
     bindProducts: firestoreAction(({bindFirestoreRef}) => {
@@ -27,4 +27,18 @@ export const manufacturerActions = {
     bindManufacturers: firestoreAction(({bindFirestoreRef}) => {
         return bindFirestoreRef('manufacturers', db.collection('manufacturers'))
     })
+};
+
+export const orderActions = {
+    // All created orders
+    bindOrders: firestoreAction(({bindFirestoreRef}) => {
+        return bindFirestoreRef('orders', db.collection('orders'))
+    }),
+    addOrder: firestoreAction((context, order) => {
+
+        const newOrder = {            
+            products: order.map(product => db.collection('products').doc(product.id))
+        }        
+        return db.collection('orders').add(newOrder).then((created) => context.commit(CREATE_ORDER_SUCCESS,created));
+    }),
 };

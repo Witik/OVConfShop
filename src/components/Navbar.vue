@@ -7,20 +7,20 @@
         <md-button class="nav-item nav-link" to="/cart">
             <i class="fa fa-shopping-cart"></i> Cart ({{cartItemsCount}})
         </md-button>
+        <md-button class="nav-item nav-link" to="/order">Orders</md-button>
     </md-toolbar>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                cartItems: this.$store.state.cart
-            }
-        },
+        
         computed: {
             cartItemsCount() {
                 // Cart count
                 return this.cartItems.length
+            },
+            cartItems(){
+                return this.$store.state.cart;            
             }
         }
     }

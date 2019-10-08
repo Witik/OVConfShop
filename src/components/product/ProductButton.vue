@@ -9,16 +9,14 @@
         REMOVE_FROM_CART
     } from '../../store/mutation-types'
     export default {
-        props: ['product'],
-        data () {
-            return {
-                cart: this.$store.state.cart
-            }
-        },
+        props: ['product'],        
         computed: {
             isAdding () {
                 return this.cart.indexOf(this.product) < 0
-            }
+            },
+            cart() {
+                return this.$store.state.cart;
+            } 
         },
         methods: {
             addToCart () {

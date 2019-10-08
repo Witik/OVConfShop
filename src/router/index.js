@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from "@/components/Home";
 import Cart from "@/components/Cart";
 import Details from "@/components/Details";
+import Order from "@/components/Order";
+import OrderDetails from "@/components/order/OrderDetails";
 import Admin from "@/components/admin/Admin";
 import AdminNew from "@/components/admin/New";
 import AdminProducts from "@/components/admin/Products";
@@ -11,7 +13,7 @@ import AdminEdit from "@/components/admin/Edit";
 Vue.use(VueRouter);
 
 export const linkActiveClass = 'link-active';
-export default new VueRouter({
+const viewRouter = new VueRouter({
     mode: 'history',
     linkActiveClass: linkActiveClass,
     routes: [
@@ -26,6 +28,23 @@ export default new VueRouter({
             name: 'Cart',
             component: Cart
         },
+        {
+            path: '/order',
+            name: 'Order',
+            component: Order,
+            // children: [
+            //     {
+            //         path: 'details:id',
+            //         name: 'Details',
+            //         component: OrderDetails
+            //     }
+            // ]
+        },   
+        {
+            path: '/order/details/:id',
+            name: 'OrderDetails',
+            component: OrderDetails
+        },  
         {
             path: '/details/:id',
             name: 'Details',
@@ -56,3 +75,5 @@ export default new VueRouter({
         { path: '*', redirect: '/home'}, // TODO 404?
     ]
 })
+
+export default viewRouter;
