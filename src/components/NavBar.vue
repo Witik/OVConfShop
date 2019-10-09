@@ -10,7 +10,7 @@
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/cart">
-                    <i class="fa fa-shopping-cart"></i> Cart
+                    <i class="fa fa-shopping-cart"></i> Cart ({{itemsInCart}})
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
@@ -18,7 +18,15 @@
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+
     export default {
-        name: 'nav-bar'
+        name: 'nav-bar',
+        computed: {
+            ...mapGetters(['cart']),
+            itemsInCart() {
+                return this.cart.length;
+            }
+        }
     }
 </script>

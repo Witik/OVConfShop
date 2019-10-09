@@ -2,8 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Cart from '@/views/Cart.vue'
+import Details from "@/views/Details.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     mode: 'history',
@@ -19,6 +20,11 @@ export default new Router({
             path: '/cart',
             name: 'Cart',
             component: Cart
+        },
+        {
+            path: '/details/:id',
+            name: 'Details',
+            component: Details
         },
         {path: '*', redirect: '/home'}
     ]

@@ -1,11 +1,17 @@
 <template>
     <b-container>
-        <h1>This is the homepage</h1>
+        <h1>Available Products</h1>
+        <product-list />
     </b-container>
 </template>
 
 <script>
+    import ProductList from "@/components/product/ProductList";
+
     export default {
-        name: 'home'
+        name: 'home',
+        components: {
+            ProductList
+        }
     }
 </script>
