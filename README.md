@@ -1,13 +1,14 @@
 # OVConfShop
 
-## Step 0: Project setup
+## Step 1: Components & Routing
 
-Run the following commands and choose the default options when prompted
-```
-vue init projectname
-vue add router
-vue add bootstrap-vue
-```
+Create the following Views
+- Home
+- Cart
+
+Create a navbar component and use it in the `App` component
+
+Setup the routing in `src/router.js`
 
 ## Documentation
  - [Vue](https://vuejs.org/v2/guide/)
