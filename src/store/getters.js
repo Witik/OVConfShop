@@ -15,3 +15,6 @@ export const cartGetters = {
     },
 };
 
+export const manufacturerGetters = {
+    manufacturers: (state) => state.manufacturers
+};

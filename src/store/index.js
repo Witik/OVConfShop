@@ -3,14 +3,16 @@ import Vuex from 'vuex'
 import {cartMutations} from "./mutations";
 import {cartGetters, productGetters} from "./getters";
 import {vuexfireMutations} from "vuexfire";
-import {productActions} from "@/store/actions";
+import {manufacturerActions, productActions} from "@/store/actions";
+import {manufacturerGetters} from "@/store/getters";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         cart: [],
-        products: []
+        products: [],
+        manufacturers: []
     },
     mutations: {
         ...cartMutations,
@@ -18,9 +20,11 @@ export default new Vuex.Store({
     },
     getters: {
         ...productGetters,
-        ...cartGetters
+        ...cartGetters,
+        ...manufacturerGetters
     },
     actions: {
-        ...productActions
+        ...productActions,
+        ...manufacturerActions
     }
 })

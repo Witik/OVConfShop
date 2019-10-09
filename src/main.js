@@ -5,6 +5,7 @@ import './plugins/bootstrap-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './vee-validate'
 
 Vue.config.productionTip = false;
 
@@ -14,5 +15,6 @@ new Vue({
     render: h => h(App),
     created() {
         this.$store.dispatch('bindProducts');
+        this.$store.dispatch('bindManufacturers');
     }
 }).$mount('#app');

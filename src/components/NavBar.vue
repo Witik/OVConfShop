@@ -8,6 +8,9 @@
             <b-navbar-nav>
                 <b-nav-item to="/home">Home</b-nav-item>
             </b-navbar-nav>
+            <b-navbar-nav>
+                <b-nav-item to="/admin">Admin</b-nav-item>
+            </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
                 <b-nav-item to="/cart">
                     <i class="fa fa-shopping-cart"></i> Cart ({{itemsInCart}})
