@@ -9,7 +9,10 @@ import store from './store'
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App),
+    created() {
+        this.$store.dispatch('bindProducts');
+    }
 }).$mount('#app');
