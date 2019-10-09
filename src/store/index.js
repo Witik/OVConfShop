@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {cartMutations} from "./mutations";
-import {cartGetters, productGetters} from "./getters";
+import {cartMutations, productMutations} from "./mutations";
+import {cartGetters, manufacturerGetters, productGetters} from "./getters";
 import {vuexfireMutations} from "vuexfire";
 import {manufacturerActions, productActions} from "@/store/actions";
-import {manufacturerGetters} from "@/store/getters";
+import {toastPlugin} from "./plugins";
 
 Vue.use(Vuex);
 
@@ -16,6 +16,7 @@ export default new Vuex.Store({
     },
     mutations: {
         ...cartMutations,
+        ...productMutations,
         ...vuexfireMutations
     },
     getters: {
@@ -26,5 +27,6 @@ export default new Vuex.Store({
     actions: {
         ...productActions,
         ...manufacturerActions
-    }
+    },
+    plugins: [toastPlugin]
 })

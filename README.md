@@ -1,34 +1,22 @@
 # OVConfShop
 
-## Step 5: Admin CRUD & VeeValidate
+## Step 6: Toasts
+### Define mutations
 
-### Setup validation
+Create (NOOP) mutations for product CRUD actions
 
-Install VeeValidate using `npm install vee-validate --save`
- 
-Create `src/vee-validate.js` to configure it
-and globally register the `ValidationProvider` & `ValidationObserver` components.
+Add these mutations as result of the corresponding actions
 
-Import it in `src/main.js`
+Create a vuex plugin to listen to these mutation types and show a toast
 
-> Tip: use the input components given in the [BootstrapVue example](https://codesandbox.io/s/validation-components-bootstrapvue-usdwv)
-
-### Create CRUD views
-
-Create an Admin view and the following child views
-- Products
-- Edit
-- New
-
-And add routing for these views
-
-> Tip: share the form-component used in the `Edit` and `New` views
-
-### Persist changes in Firestore
-
-Bind the manufacturers collection to the store
-
-Create firestore CRUD actions in `src/store/actions.js` using Vuexfire
+> Tip: Use the following code snippet to access the BootstrapVue toast component
+```javascript
+if (!toast) {
+    // Can't globally access toast component
+    // Lazy load toast from a new Vue instance
+    toast = new Vue().$bvToast;
+}
+```
 
 ## Documentation
  - [Vue](https://vuejs.org/v2/guide/)
