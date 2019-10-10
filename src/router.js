@@ -7,10 +7,12 @@ import Admin from "@/views/Admin.vue";
 import Products from "@/views/admin/Products";
 import Edit from "@/views/admin/Edit";
 import New from "@/views/admin/New";
+import Login from "@/views/Login";
+import auth from "@/firebase/auth";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [
@@ -35,6 +37,9 @@ export default new Router({
             name: 'Admin',
             component: Admin,
             redirect: '/admin/products',
+            meta: {
+                requiresAuth: true
+            },
             children: [
                 {
                     path: 'products',
@@ -53,6 +58,24 @@ export default new Router({
                 }
             ]
         },
+        {
+            path: '/login',
+            name: 'Login',
+            component: Login
+        },
         {path: '*', redirect: '/home'}
     ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    const currentUser = auth.currentUser;
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+    if (requiresAuth && !currentUser) {
+        next({path: 'login', query: {redirect: to.path}});
+    } else {
+        next();
+    }
+});
+
+export default router

@@ -15,6 +15,9 @@
                 <b-nav-item to="/cart">
                     <i class="fa fa-shopping-cart"></i> Cart ({{itemsInCart}})
                 </b-nav-item>
+                <b-nav-dropdown v-if="user" :text="user.email">
+                    <b-dropdown-item @click="logout">Logout</b-dropdown-item>
+                </b-nav-dropdown>
             </b-navbar-nav>
         </b-collapse>
     </b-navbar>
@@ -22,6 +25,7 @@
 
 <script>
     import {mapGetters} from "vuex";
+    import auth from "@/firebase/auth";
 
     export default {
         name: 'nav-bar',
@@ -30,6 +34,25 @@
             itemsInCart() {
                 return this.cart.length;
             }
+        },
+        data() {
+            return {
+                user: null
+            }
+        },
+        methods: {
+            logout() {
+                auth.signOut().then(() => {
+                    if (this.$route.matched.some(record => record.meta.requiresAuth)) {
+                        this.$router.push('/');
+                    }
+                })
+            }
+        },
+        created() {
+            auth.onAuthStateChanged(user => {
+                this.user = user;
+            })
         }
     }
 </script>

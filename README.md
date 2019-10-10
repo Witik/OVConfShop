@@ -1,22 +1,38 @@
 # OVConfShop
 
-## Step 6: Toasts
-### Define mutations
+## Step 7: Admin login
+### Firebase setup
+Go to your project in the [firebase console](console.firebase.google.com) and enable Email/Password sign-in under authentication.
 
-Create (NOOP) mutations for product CRUD actions
+Add a new Email/Password user and copy the User UID
 
-Add these mutations as result of the corresponding actions
-
-Create a vuex plugin to listen to these mutation types and show a toast
-
-> Tip: Use the following code snippet to access the BootstrapVue toast component
-```javascript
-if (!toast) {
-    // Can't globally access toast component
-    // Lazy load toast from a new Vue instance
-    toast = new Vue().$bvToast;
+Go to your Firestore database and edit the rules to be:
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true;
+      allow write: if request.auth.uid == 'User UID copied in the previous step';
+    }
+  }
 }
 ```
+> This rule prevents changes to the database by users other than the newly created one
+
+### Vue setup
+Create `src/firebase/auth.js` which imports the `firebase/auth` module and exports `firebase.auth()` as a constant
+
+Create a `Login` view which [redirects](https://router.vuejs.org/guide/essentials/navigation.html#router-replace-location-oncomplete-onabort) the user on successful login
+
+Create a sign-out button on the NavBar
+> You can use `auth.currentUser` to check if the user is logged in
+
+Add a `requiresAuth` [meta tag](https://router.vuejs.org/guide/advanced/meta.html) to the `Admin` routes
+
+Add a [global router navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards)
+that checks if the user is logged in before accessing routes with the `requiresAuth` property
+and otherwise redirects the user to the Login view
 
 ## Documentation
  - [Vue](https://vuejs.org/v2/guide/)
@@ -26,3 +42,4 @@ if (!toast) {
  - [Firestore](https://firebase.google.com/docs/firestore)
  - [Vuexfire](https://vuefire.vuejs.org/vuexfire/)
  - [VeeValidate](https://logaretm.github.io/vee-validate/guide/)
+ - [Firebase Auth](https://firebase.google.com/docs/auth/web/password-auth)
