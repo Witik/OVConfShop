@@ -24,13 +24,3 @@ The guide is divided in eight steps:
 Each step contains instructions to complete it, and the resulting code
 
 Using the provided documentation links is essential for completing this guide
-
-## Documentation
- - [Vue](https://vuejs.org/v2/guide/)
- - [VueRouter](https://router.vuejs.org/guide/)
- - [BootstrapVue](https://bootstrap-vue.js.org/docs)
- - [Vuex](https://vuex.vuejs.org/guide/)
- - [Firestore](https://firebase.google.com/docs/firestore)
- - [Vuexfire](https://vuefire.vuejs.org/vuexfire/)
- - [VeeValidate](https://logaretm.github.io/vee-validate/guide/)
- - [Firebase Auth](https://firebase.google.com/docs/auth/web/password-auth)
