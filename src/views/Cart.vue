@@ -8,7 +8,9 @@
                 </b-list-group-item>
             </b-list-group>
         </div>
-        <h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1>
+        <div v-else>
+            <h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1>
+        </div>
     </b-container>
 </template>
 
