@@ -9,6 +9,8 @@ import Edit from "@/views/admin/Edit";
 import New from "@/views/admin/New";
 import Login from "@/views/Login";
 import auth from "@/firebase/auth";
+import Order from "@/views/Order";
+import OrderDetails from "@/views/OrderDetails";
 
 Vue.use(Router);
 
@@ -26,6 +28,16 @@ const router = new Router({
             path: '/cart',
             name: 'Cart',
             component: Cart
+        },
+        {
+            path: '/orders',
+            name: 'Order',
+            component: Order
+        },
+        {
+            path: '/order/:id',
+            name: 'OrderDetails',
+            component: OrderDetails
         },
         {
             path: '/details/:id',

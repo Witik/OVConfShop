@@ -16,5 +16,6 @@ new Vue({
     created() {
         this.$store.dispatch('bindProducts');
         this.$store.dispatch('bindManufacturers');
+        this.$store.dispatch('bindOrders');
     }
 }).$mount('#app');

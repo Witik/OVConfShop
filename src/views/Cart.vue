@@ -7,6 +7,9 @@
                     <product-details :product="product"></product-details>
                 </b-list-group-item>
             </b-list-group>
+            <b-button variant="primary" @click="createNewOrder">
+                <i class="fa fa-credit-card"></i> Create new order
+            </b-button>
         </div>
         <div v-else>
             <h1><i class="fa fa-superpowers"></i> Your Cart is Empty</h1>
@@ -21,6 +24,11 @@
     export default {
         computed: {
             ...mapGetters(['cart'])
+        },
+        methods: {
+            createNewOrder() {
+                this.$store.dispatch('addOrder', this.cart)
+            },
         },
         components: {
             productDetails: ProductDetails

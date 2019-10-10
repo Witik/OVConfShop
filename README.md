@@ -1,38 +1,44 @@
 # OVConfShop
 
-## Step 7: Admin login
-### Firebase setup
-Go to your project in the [firebase console](console.firebase.google.com) and enable Email/Password sign-in under authentication.
+## Step 8: Placing and viewing orders
+Add a list of orders to your vuex store
 
-Add a new Email/Password user and copy the User UID
+An order should contain the following properties:
+- Order Date (use [firestore Timestamp](https://firebase.google.com/docs/reference/js/firebase.firestore.Timestamp))
+- A list of products (use references)
 
-Go to your Firestore database and edit the rules to be:
+Bind the store variable to Firebase and create the corresponding getter
+
+Create an action to insert an order in firebase
+> Tip: This should be done in the same way as products
+
+Create a button on the cart page to place your order
+
+Create a View to show all available orders
+
+Show the total price of each order
+
+Create a View to show details of a specific order
+
+Redirect to the order details view when it's placed
+
+At this moment you can only submit orders when logged in, to fix this change the Firestore [rules](https://firebase.google.com/docs/firestore/security/get-started) to:
 ```
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    match /orders/{order} {
+      allow read,create: if true;
+      allow update,delete: if false;
+    }
+
     match /{document=**} {
       allow read: if true;
-      allow write: if request.auth.uid == 'User UID copied in the previous step';
+      allow write: if request.auth.uid == 'KzHcfwBPITME2578XnPsj8SCy7g1';
     }
   }
 }
 ```
-> This rule prevents changes to the database by users other than the newly created one
-
-### Vue setup
-Create `src/firebase/auth.js` which imports the `firebase/auth` module and exports `firebase.auth()` as a constant
-
-Create a `Login` view which [redirects](https://router.vuejs.org/guide/essentials/navigation.html#router-replace-location-oncomplete-onabort) the user on successful login
-
-Create a sign-out button on the NavBar
-> You can use `auth.currentUser` to check if the user is logged in
-
-Add a `requiresAuth` [meta tag](https://router.vuejs.org/guide/advanced/meta.html) to the `Admin` routes
-
-Add a [global router navigation guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#global-before-guards)
-that checks if the user is logged in before accessing routes with the `requiresAuth` property
-and otherwise redirects the user to the Login view
 
 ## Documentation
  - [Vue](https://vuejs.org/v2/guide/)

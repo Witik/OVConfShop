@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {cartMutations, productMutations} from "./mutations";
-import {cartGetters, manufacturerGetters, productGetters} from "./getters";
+import {cartMutations, orderMutations, productMutations} from "./mutations";
+import {cartGetters, manufacturerGetters, orderGetters, productGetters} from "./getters";
 import {vuexfireMutations} from "vuexfire";
-import {manufacturerActions, productActions} from "@/store/actions";
+import {manufacturerActions, orderActions, productActions} from "@/store/actions";
 import {toastPlugin} from "./plugins";
 
 Vue.use(Vuex);
@@ -12,21 +12,25 @@ export default new Vuex.Store({
     state: {
         cart: [],
         products: [],
-        manufacturers: []
+        manufacturers: [],
+        orders: []
     },
     mutations: {
         ...cartMutations,
         ...productMutations,
-        ...vuexfireMutations
+        ...vuexfireMutations,
+        ...orderMutations
     },
     getters: {
         ...productGetters,
         ...cartGetters,
-        ...manufacturerGetters
+        ...manufacturerGetters,
+        ...orderGetters
     },
     actions: {
         ...productActions,
-        ...manufacturerActions
+        ...manufacturerActions,
+        ...orderActions
     },
     plugins: [toastPlugin]
 })
