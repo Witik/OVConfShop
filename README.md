@@ -4,7 +4,7 @@
 
 Run the following commands and choose the default options when prompted
 ```
-vue init projectname
+vue create projectname
 vue add router
 vue add bootstrap-vue
 ```
