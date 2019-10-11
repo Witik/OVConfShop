@@ -10,6 +10,8 @@ vue add router
 vue add bootstrap-vue
 ```
 
+Run `npm run serve` to launch the project
+
 ## Documentation
  - [Vue](https://vuejs.org/v2/guide/)
  - [VueRouter](https://router.vuejs.org/guide/)
